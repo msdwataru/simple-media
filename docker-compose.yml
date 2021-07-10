@@ -5,3 +5,9 @@ services:
       context: ./proxy
     ports:
       - "8080:8080"
+  mysql:
+    build: ./mysql
+    env_file: ./mysql/mysql.env
+    ports:
+      - '3306:3306'
+
