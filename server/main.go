@@ -5,7 +5,8 @@ import (
 	"log"
 	"net"
 
-	pb "simple-media/article"
+	"simple-media/article"
+	pb "simple-media/articlepb"
 
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 
@@ -20,10 +21,8 @@ const (
 type server struct{}
 
 func (s *server) GetList(ctx context.Context, r *emptypb.Empty) (*pb.ArticleList, error) {
-	articleList := []*pb.Article{
-		{Id: "1", Title: "hogehoge", Contents: "hello"},
-		{Id: "2", Title: "fuga", Contents: "world!"},
-	}
+	var articleRepository = article.NewArticleRepository()
+	articleList := articleRepository.GetList()
 	return &pb.ArticleList{
 		Article: articleList,
 	}, nil
