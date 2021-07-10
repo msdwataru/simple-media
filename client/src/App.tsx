@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
-import { AppBar, Toolbar, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import React, { useState } from "react";
+import { Link, BrowserRouter as Router, Route } from "react-router-dom";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 
-import './App.css';
-import { ArticleList } from './ArticleList';
-import { Article } from './Article';
-import { ArticleCreate } from './ArticleCreate';
-import styled from 'styled-components';
+import "./App.css";
+import { ArticleList } from "./ArticleList";
+import { Article } from "./Article";
+import { ArticleCreate } from "./ArticleCreate";
+import styled from "styled-components";
 
 const useStyles = makeStyles({
   icon: {
@@ -26,20 +26,22 @@ const useStyles = makeStyles({
   },
 });
 
-
 const Navbar = () => {
   const classes = useStyles();
   return (
     <AppBar position="static">
       <Toolbar>
-      <LibraryBooksIcon className={classes.icon}/>
-        <Link className={classes.homeLink} to="/">Simple Media Searvice</Link>
-        <Button className={classes.button} component={Link} to="/create">Create</Button>
+        <LibraryBooksIcon className={classes.icon} />
+        <Link className={classes.homeLink} to="/">
+          Simple Media Searvice
+        </Link>
+        <Button className={classes.button} component={Link} to="/create">
+          Create
+        </Button>
       </Toolbar>
     </AppBar>
-  )
-}
-
+  );
+};
 
 function App() {
   return (

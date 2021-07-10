@@ -5,9 +5,12 @@ import (
 	"log"
 	"net"
 
-	pb "./hello"
+	pb "simple-media/article"
+
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 const (
@@ -16,9 +19,14 @@ const (
 
 type server struct{}
 
-func (s *server) SayHello(ctx context.Context, r *pb.HelloRequest) (*pb.HelloResponse, error) {
-	log.Pintln("Recieved : %s", r.GetName())
-	return &pb.HelloResponse{Message: "Hello" + r.GetName() + "!"}, nil
+func (s *server) GetList(ctx context.Context, r *emptypb.Empty) (*pb.ArticleList, error) {
+	articleList := []*pb.Article{
+		{Id: "1", Title: "hogehoge", Contents: "hello"},
+		{Id: "2", Title: "fuga", Contents: "world!"},
+	}
+	return &pb.ArticleList{
+		Article: articleList,
+	}, nil
 }
 
 func main() {
@@ -28,7 +36,8 @@ func main() {
 	}
 
 	s := grpc.NewServer()
-	pb.RegisterHelloServiceServer(s, &server{})
+
+	pb.RegisterArticleServiceServer(s, &server{})
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %c", err)

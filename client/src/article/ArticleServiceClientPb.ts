@@ -13,8 +13,8 @@
 
 import * as grpcWeb from 'grpc-web';
 
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 import * as article_pb from './article_pb';
-import * as common_pb from './common_pb';
 
 
 export class ArticleServiceClient {
@@ -38,24 +38,24 @@ export class ArticleServiceClient {
 
   methodInfoGetList = new grpcWeb.AbstractClientBase.MethodInfo(
     article_pb.ArticleList,
-    (request: common_pb.none) => {
+    (request: google_protobuf_empty_pb.Empty) => {
       return request.serializeBinary();
     },
     article_pb.ArticleList.deserializeBinary
   );
 
   getList(
-    request: common_pb.none,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null): Promise<article_pb.ArticleList>;
 
   getList(
-    request: common_pb.none,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
                response: article_pb.ArticleList) => void): grpcWeb.ClientReadableStream<article_pb.ArticleList>;
 
   getList(
-    request: common_pb.none,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
                response: article_pb.ArticleList) => void) {

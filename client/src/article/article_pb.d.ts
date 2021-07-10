@@ -1,14 +1,28 @@
 import * as jspb from 'google-protobuf'
 
-import * as common_pb from './common_pb';
+import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 
 
 export class Article extends jspb.Message {
+  getId(): string;
+  setId(value: string): Article;
+
   getTitle(): string;
   setTitle(value: string): Article;
 
   getContents(): string;
   setContents(value: string): Article;
+
+  getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Article;
+  hasCreatedAt(): boolean;
+  clearCreatedAt(): Article;
+
+  getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Article;
+  hasUpdatedAt(): boolean;
+  clearUpdatedAt(): Article;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Article.AsObject;
@@ -20,8 +34,11 @@ export class Article extends jspb.Message {
 
 export namespace Article {
   export type AsObject = {
+    id: string,
     title: string,
     contents: string,
+    createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 

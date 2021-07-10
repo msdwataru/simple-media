@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./;articlepb";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service ArticleService {
+    rpc GetList (google.protobuf.Empty) returns (ArticleList);
+}
+
+message Article {
+    string id = 1;
+    string title = 2;
+    string contents = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;    
+}
+
+message ArticleList {
+    repeated Article article = 1;
+}
